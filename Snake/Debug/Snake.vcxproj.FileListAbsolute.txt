@@ -1,0 +1,3 @@
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Debug\Snake.vcxprojAssemblyReference.cache
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Debug\Snake.StartForm.resources
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Debug\Snake.vcxproj.GenerateResource.cache

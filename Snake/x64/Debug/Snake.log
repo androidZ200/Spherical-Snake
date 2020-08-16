@@ -1,0 +1,16 @@
+﻿  Скопировано файлов: 0.
+  GameSpace.cpp
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Camera.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\SnakeBody.h(13,18): warning C4305: инициализация: усечение из "double" в "float"
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\GameSpace.cpp(68,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  StartForm.cpp
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Camera.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\SnakeBody.h(13,18): warning C4305: инициализация: усечение из "double" в "float"
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\StartForm.h(147,29): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\StartForm.h(207,21): warning C4018: <: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\StartForm.h(222,19): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\StartForm.h(223,87): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\StartForm.h(223,51): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  Создание кода...
+  Camera.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  Snake.vcxproj -> E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\x64\Debug\Snake.exe
