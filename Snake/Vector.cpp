@@ -26,6 +26,12 @@ Vector::Vector(const Vector& other)
 	for (int i = 0; i < length; i++)
 		vec[i] = other.vec[i];
 }
+Vector::Vector(Vector&& other)
+{
+	length = other.length;
+	vec = other.vec;
+	other.vec = 0;
+}
 Vector::~Vector()
 {
 	delete[] vec;
@@ -37,6 +43,14 @@ Vector& Vector::operator=(const Vector& other)
 	vec = t.vec;
 	t.vec = tt;
 	length = t.length;
+	return *this;
+}
+Vector& Vector::operator=(Vector&& other)
+{
+	delete[] vec;
+	vec = other.vec;
+	length = other.length;
+	other.vec = 0;
 	return *this;
 }
 Vector& Vector::operator+=(const Vector& other)
@@ -130,7 +144,7 @@ Vector& Vector::normalize()
 		vec[i] /= s;
 	return *this;
 }
-unsigned int Vector::GetSize() const
+unsigned int Vector::size() const
 {
 	return length;
 }

@@ -20,12 +20,19 @@ sf::Color SkinBlueWave::ColorSegment(int index)
 
 ISkin* SkinGenerate::Generate()
 {
-    int i = rand() % 3;
+    int i = rand() % 4;
     switch (i)
     {
     case 0: return new SkinLight();
     case 1: return new SkinGreenWave();
     case 2: return new SkinBlueWave();
+    case 3: return new SkinLava();
     }
     return nullptr;
+}
+
+sf::Color SkinLava::ColorSegment(int index)
+{
+    double s = std::cos(index / 3.0);
+    return sf::Color::Color(235 + s*20, 121 + s*111, 35 + s*35);
 }

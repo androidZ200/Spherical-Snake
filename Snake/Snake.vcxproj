@@ -129,7 +129,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="GameSpace.cpp" />
+    <ClCompile Include="GameClassic.cpp" />
+    <ClCompile Include="GameZen.cpp" />
+    <ClCompile Include="IConstGame.cpp" />
+    <ClCompile Include="IGame.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Skins.cpp" />
     <ClCompile Include="SnakeBody.cpp" />
     <ClCompile Include="StartForm.cpp" />
@@ -137,7 +141,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="GameSpace.h" />
+    <ClInclude Include="GameClassic.h" />
+    <ClInclude Include="GameZen.h" />
+    <ClInclude Include="IConstGame.h" />
+    <ClInclude Include="IGame.h" />
+    <ClInclude Include="IPlayer.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Skins.h" />
     <ClInclude Include="SnakeBody.h" />
     <ClInclude Include="StartForm.h">

@@ -1,0 +1,43 @@
+﻿  E:\YandexDisk\YandexDisk\Projects\C++ projects\libs\Matrix\x64\Debug\Matrix.dll
+  Скопировано файлов: 1.
+  Camera.cpp
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Camera.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+  GameSpace.cpp
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Camera.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\SnakeBody.h(13,18): warning C4305: инициализация: усечение из "double" в "float"
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\GameSpace.cpp(68,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Skins.cpp
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Skins.cpp(11,11): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Skins.cpp(17,11): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  SnakeBody.cpp
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Camera.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\SnakeBody.h(13,18): warning C4305: инициализация: усечение из "double" в "float"
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\SnakeBody.cpp(27,20): warning C4305: -=: усечение из "double" в "float"
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\SnakeBody.cpp(36,20): warning C4305: +=: усечение из "double" в "float"
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\SnakeBody.cpp(56,20): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+  StartForm.cpp
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Camera.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\SnakeBody.h(13,18): warning C4305: инициализация: усечение из "double" в "float"
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\StartForm.h(147,29): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\StartForm.h(207,21): warning C4018: <: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\StartForm.h(222,19): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\StartForm.h(223,87): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\StartForm.h(223,51): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  Vector.cpp
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(19,20): warning C4018: <: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(26,20): warning C4018: <: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(44,20): warning C4018: <: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(56,20): warning C4018: <: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(68,20): warning C4018: <: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(80,20): warning C4018: <: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(92,17): warning C4018: >=: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(97,17): warning C4018: >=: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(103,20): warning C4018: <: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(114,20): warning C4018: <: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(121,20): warning C4018: <: несоответствие типов со знаком и без знака
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Vector.cpp(129,20): warning C4018: <: несоответствие типов со знаком и без знака
+  .NETFramework,Version=v4.8.AssemblyAttributes.cpp
+  Создание кода...
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Camera.cpp(31): warning C4717: Camera::operator=: рекурсия на всех путях выполнения, функция вызовет переполнение стека
+  Camera.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  Snake.vcxproj -> E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\x64\Release\Snake.exe

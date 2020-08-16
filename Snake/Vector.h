@@ -11,9 +11,11 @@ public:
 	Vector(int length);
 	Vector(double* vec, int Length);
 	Vector(const Vector& other);
+	Vector(Vector&& other);
 	~Vector();
 
 	Vector& operator = (const Vector& other);
+	Vector& operator = (Vector&& other);
 	Vector& operator += (const Vector& other);
 	Vector operator + (const Vector& other) const;
 	Vector& operator -= (const Vector& other);
@@ -31,6 +33,6 @@ public:
 	double scal(const Vector& other) const;
 	double modul() const;
 	Vector& normalize();
-	unsigned int GetSize() const;
+	unsigned int size() const;
 };
 

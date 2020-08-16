@@ -1,8 +1,11 @@
 #pragma once
 using namespace System::Threading;
 #include <SFML/Graphics.hpp>
-#include "GameSpace.h"
+#include "GameClassic.h"
+#include "GameZen.h"
 #include <string>
+#include "Player.h"
+#include <time.h>
 
 namespace Snake {
 
@@ -22,9 +25,7 @@ namespace Snake {
 		StartForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
+			srand(time(0));
 		}
 
 	protected:
@@ -38,9 +39,13 @@ namespace Snake {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ buttonStart;
+	private: System::Windows::Forms::Button^ buttonStartClassic;
 	private: System::Windows::Forms::Button^ buttonCreateServer;
 	private: System::Windows::Forms::Button^ buttonConnect;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Button^ buttonStartDzen;
+	private: System::Windows::Forms::Button^ buttonToPlayers;
 	protected:
 
 
@@ -60,27 +65,31 @@ namespace Snake {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->buttonStart = (gcnew System::Windows::Forms::Button());
+			this->buttonStartClassic = (gcnew System::Windows::Forms::Button());
 			this->buttonCreateServer = (gcnew System::Windows::Forms::Button());
 			this->buttonConnect = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->buttonStartDzen = (gcnew System::Windows::Forms::Button());
+			this->buttonToPlayers = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// buttonStart
+			// buttonStartClassic
 			// 
-			this->buttonStart->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+			this->buttonStartClassic->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->buttonStart->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(40)), static_cast<System::Int32>(static_cast<System::Byte>(40)),
-				static_cast<System::Int32>(static_cast<System::Byte>(40)));
-			this->buttonStart->FlatAppearance->BorderSize = 0;
-			this->buttonStart->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->buttonStart->ForeColor = System::Drawing::Color::White;
-			this->buttonStart->Location = System::Drawing::Point(13, 13);
-			this->buttonStart->Name = L"buttonStart";
-			this->buttonStart->Size = System::Drawing::Size(211, 38);
-			this->buttonStart->TabIndex = 0;
-			this->buttonStart->Text = L"Одиночная игра";
-			this->buttonStart->UseVisualStyleBackColor = false;
-			this->buttonStart->Click += gcnew System::EventHandler(this, &StartForm::buttonStart_Click);
+			this->buttonStartClassic->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(40)),
+				static_cast<System::Int32>(static_cast<System::Byte>(40)), static_cast<System::Int32>(static_cast<System::Byte>(40)));
+			this->buttonStartClassic->FlatAppearance->BorderSize = 0;
+			this->buttonStartClassic->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonStartClassic->ForeColor = System::Drawing::Color::White;
+			this->buttonStartClassic->Location = System::Drawing::Point(13, 29);
+			this->buttonStartClassic->Name = L"buttonStartClassic";
+			this->buttonStartClassic->Size = System::Drawing::Size(164, 38);
+			this->buttonStartClassic->TabIndex = 0;
+			this->buttonStartClassic->Text = L"Классика";
+			this->buttonStartClassic->UseVisualStyleBackColor = false;
+			this->buttonStartClassic->Click += gcnew System::EventHandler(this, &StartForm::buttonStartClassic_Click);
 			// 
 			// buttonCreateServer
 			// 
@@ -91,9 +100,9 @@ namespace Snake {
 			this->buttonCreateServer->FlatAppearance->BorderSize = 0;
 			this->buttonCreateServer->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonCreateServer->ForeColor = System::Drawing::Color::White;
-			this->buttonCreateServer->Location = System::Drawing::Point(13, 57);
+			this->buttonCreateServer->Location = System::Drawing::Point(12, 114);
 			this->buttonCreateServer->Name = L"buttonCreateServer";
-			this->buttonCreateServer->Size = System::Drawing::Size(211, 38);
+			this->buttonCreateServer->Size = System::Drawing::Size(165, 38);
 			this->buttonCreateServer->TabIndex = 1;
 			this->buttonCreateServer->Text = L"Создать сервер";
 			this->buttonCreateServer->UseVisualStyleBackColor = false;
@@ -107,12 +116,65 @@ namespace Snake {
 			this->buttonConnect->FlatAppearance->BorderSize = 0;
 			this->buttonConnect->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonConnect->ForeColor = System::Drawing::Color::White;
-			this->buttonConnect->Location = System::Drawing::Point(13, 101);
+			this->buttonConnect->Location = System::Drawing::Point(187, 114);
 			this->buttonConnect->Name = L"buttonConnect";
-			this->buttonConnect->Size = System::Drawing::Size(211, 38);
+			this->buttonConnect->Size = System::Drawing::Size(164, 38);
 			this->buttonConnect->TabIndex = 2;
 			this->buttonConnect->Text = L"Присоединиться";
 			this->buttonConnect->UseVisualStyleBackColor = false;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->ForeColor = System::Drawing::Color::White;
+			this->label1->Location = System::Drawing::Point(31, 9);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(91, 13);
+			this->label1->TabIndex = 3;
+			this->label1->Text = L"Одиночная игра:";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->ForeColor = System::Drawing::Color::White;
+			this->label2->Location = System::Drawing::Point(30, 91);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(96, 13);
+			this->label2->TabIndex = 4;
+			this->label2->Text = L"Игра с друзьями:";
+			// 
+			// buttonStartDzen
+			// 
+			this->buttonStartDzen->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->buttonStartDzen->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(40)), static_cast<System::Int32>(static_cast<System::Byte>(40)),
+				static_cast<System::Int32>(static_cast<System::Byte>(40)));
+			this->buttonStartDzen->FlatAppearance->BorderSize = 0;
+			this->buttonStartDzen->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonStartDzen->ForeColor = System::Drawing::Color::White;
+			this->buttonStartDzen->Location = System::Drawing::Point(187, 29);
+			this->buttonStartDzen->Name = L"buttonStartDzen";
+			this->buttonStartDzen->Size = System::Drawing::Size(164, 38);
+			this->buttonStartDzen->TabIndex = 5;
+			this->buttonStartDzen->Text = L"Дзэн";
+			this->buttonStartDzen->UseVisualStyleBackColor = false;
+			this->buttonStartDzen->Click += gcnew System::EventHandler(this, &StartForm::buttonStartDzen_Click);
+			// 
+			// buttonToPlayers
+			// 
+			this->buttonToPlayers->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->buttonToPlayers->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(40)), static_cast<System::Int32>(static_cast<System::Byte>(40)),
+				static_cast<System::Int32>(static_cast<System::Byte>(40)));
+			this->buttonToPlayers->FlatAppearance->BorderSize = 0;
+			this->buttonToPlayers->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonToPlayers->ForeColor = System::Drawing::Color::White;
+			this->buttonToPlayers->Location = System::Drawing::Point(13, 162);
+			this->buttonToPlayers->Name = L"buttonToPlayers";
+			this->buttonToPlayers->Size = System::Drawing::Size(165, 38);
+			this->buttonToPlayers->TabIndex = 6;
+			this->buttonToPlayers->Text = L"На одном компьютере";
+			this->buttonToPlayers->UseVisualStyleBackColor = false;
 			// 
 			// StartForm
 			// 
@@ -120,110 +182,43 @@ namespace Snake {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
-			this->ClientSize = System::Drawing::Size(236, 152);
+			this->ClientSize = System::Drawing::Size(363, 212);
+			this->Controls->Add(this->buttonToPlayers);
+			this->Controls->Add(this->buttonStartDzen);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->buttonConnect);
 			this->Controls->Add(this->buttonCreateServer);
-			this->Controls->Add(this->buttonStart);
+			this->Controls->Add(this->buttonStartClassic);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"StartForm";
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
 
-		GameSpace* game;
-		Object^ locker = gcnew Object();
-		sf::CircleShape* cir;
-		bool isPause = false;
-		bool isPausePressed = false;
-		const int radius = 8;
-
-	private: System::Void buttonStart_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->Visible = false;
-		sf::ContextSettings settings;
-		settings.antialiasingLevel = 8;
-		sf::RenderWindow window(sf::VideoMode(600, 600), "", sf::Style::Default, settings);
-		game = new GameSpace(SkinGenerate::Generate());
-		cir = new sf::CircleShape(radius);
-		Thread^ t = gcnew Thread(gcnew ThreadStart(this, &StartForm::LoopGame));
-		t->Start();
-		isPause = false;
-		
-		while (window.isOpen())
-		{
-			sf::Event event;
-			while (window.pollEvent(event))
-			{
-				if (event.type == sf::Event::Closed) {
-					window.close();
-					game->Stop();
-				}
-				else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) game->Stop();
-				else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Pause && !isPausePressed) {
-					isPause = !isPause;
-					isPausePressed = true;
-				}
-				else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Pause) isPausePressed = false;
-			}
-			if (!game->isPlaying()) window.close();
-
-			window.clear(sf::Color::Color(28, 28, 28));
-			int i = 0;
-			Monitor::Enter(locker);
-				for (auto x = game->Snake()->begin(); x != game->Snake()->end(); ++x, ++i)
-					DrawCircle(&window, mult(game->Snake()->GetMatrix(), *x), game->Snake()->GetColor(i));
-				DrawCircle(&window, mult(game->Snake()->GetMatrix(), game->GetEatPosition()), sf::Color::Red);
-			Monitor::Exit(locker);
-			window.display();
-			window.setTitle(std::to_string(game->GetCount()));
-		}
-		t->Join();
-		delete cir;
-		this->Visible = true;
-		MessageBox::Show("Length: " + game->Snake()->size().ToString());
+	private: System::Void buttonStartClassic_Click(System::Object^ sender, System::EventArgs^ e) {
+		IGame* game = new GameClassic(new Player(new SnakeBody(SkinGenerate::Generate())));
+		LoopGame(game);
 		delete game;
 	}
-
-	private: void LoopGame() {
+	private: System::Void buttonStartDzen_Click(System::Object^ sender, System::EventArgs^ e) {
+		IGame* game = new GameZen(new Player(new SnakeBody(SkinGenerate::Generate())));
+		LoopGame(game);
+		delete game;
+	}
+	private: void LoopGame(IGame* game) {
+		this->Visible = false;
 		sf::Clock time;
 		while (game->isPlaying()) {
 			time.restart();
-			if (!isPause) {
-				Monitor::Enter(locker);
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) ||
-						sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) game->Snake()->Rotate(false);
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) ||
-						sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) game->Snake()->Rotate(true);
-					game->Snake()->Move();
-					game->Check();
-				Monitor::Exit(locker);
-			}
+			game->Tick();
 			int t = time.getElapsedTime().asMilliseconds();
 			Thread::Sleep(Math::Max(40 - t, 0));
 		}
-	}
-	private: Vector mult(const Matrix& mat, const Vector& vec) {
-		Vector res(mat.size());
-		for (int i = 0; i < res.GetSize(); i++) {
-			res[i] = 0;
-			for (int j = 0; j < mat.size(); j++)
-				res[i] += mat(j, i) * vec[j];
-		}
-		return res;
-	}
-	private: void DrawCircle(sf::RenderWindow* window, Vector coord, sf::Color col) {
-		double len = acos(coord[2]);
-		if (len * len < 8) {
-			coord[2] = 0;
-			if (len > 0.01)	coord.normalize();
-			double R = 0;
-			if (len < 0.01) R = radius;
-			else R = radius * len / Math::Sin(len);
-			cir->setRadius(R);
-			cir->setPosition((coord[0] * len + 1.75) * 171 - R, (-coord[1] * len + 1.75) * 171 - R);
-			cir->setFillColor(col);
-			window->draw(*cir);
-		}
+		this->Visible = true;
+		MessageBox::Show("Length: " + game->GetSnake(0)->size().ToString());
 	}
 	};
 }

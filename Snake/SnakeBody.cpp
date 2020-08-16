@@ -18,6 +18,7 @@ SnakeBody::~SnakeBody()
 
 void SnakeBody::Move()
 {
+	if (gostMode > 0) gostMode--;
 	if (addSegments > 0) addSegments--;
 	else body.pop_front();
 	head.GoFront(0.03);
@@ -36,9 +37,25 @@ void SnakeBody::Rotate(bool isRight)
 		maxRotate += 0.02;
 }
 
+bool SnakeBody::isGostMode()
+{
+	return gostMode > 0;
+}
+
 void SnakeBody::AddSegments(int count)
 {
 	addSegments += count;
+}
+
+void SnakeBody::AddGostMode(int count)
+{
+	gostMode += count;
+}
+
+void SnakeBody::DeleteTail(int count)
+{
+	for (int i = 0; i < count; i++)
+		body.pop_front();
 }
 
 Matrix SnakeBody::GetMatrix()
@@ -58,7 +75,9 @@ int SnakeBody::size()
 
 sf::Color SnakeBody::GetColor(int index)
 {
-	return skin->ColorSegment(index);
+	sf::Color c = skin->ColorSegment(index);
+	if (gostMode > 0) c.a = 100;
+	return c;
 }
 
 std::list<Vector>::reverse_iterator SnakeBody::begin()

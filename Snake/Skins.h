@@ -26,3 +26,8 @@ class SkinBlueWave : public ISkin {
 public:
 	sf::Color ColorSegment(int index) override;
 };
+
+class SkinLava : public ISkin {
+public:
+	sf::Color ColorSegment(int index) override;
+};
