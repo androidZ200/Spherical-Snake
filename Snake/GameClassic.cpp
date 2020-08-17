@@ -40,16 +40,11 @@ void GameClassic::Tick()
 
 		if (Length(player->Snake()->HeadPosition(), eat) < 0.08) {
 			IGame::AddSegments(player->Snake(), 5);
-			do { EatGenerate(eat); } while (LengthToSnake(player->Snake(), eat) < 0.3);
+			do { EatGenerate(eat); } while (LengthToSnake(player->Snake(), eat) < 0.13);
 		}
 
-		int i = 0;
-		for (auto x = player->Snake()->begin(); x != player->Snake()->end(); ++x, ++i)
-			if (i < 31) continue;
-			else if (Length(player->Snake()->HeadPosition(), *x) < 0.07) {
-				isEndGame = true;
-				break;
-			}
+		if (LengthToSnake(player->Snake()) < 0.07)
+			isEndGame = true;
 	}
 	player->DrawFrame();
 }

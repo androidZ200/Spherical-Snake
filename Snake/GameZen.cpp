@@ -6,7 +6,7 @@ GameZen::GameZen(IPlayer* player)
 	eat = new Vector[eatCount];
 	for (int i = 0; i < eatCount; i++) {
 		eat[i] = Vector(3);
-		do { EatGenerate(eat[i]); } while (LengthToSnake(player->Snake(), eat[i]) < 0.3);
+		do { EatGenerate(eat[i]); } while (LengthToSnake(player->Snake(), eat[i]) < 0.1);
 	}
 	player->SetGameField(this);
 }
@@ -45,16 +45,12 @@ void GameZen::Tick()
 		for(int i = 0; i < eatCount; i++)
 			if (Length(player->Snake()->HeadPosition(), eat[i]) < 0.08) {
 				IGame::AddSegments(player->Snake(), 5);
-				do { EatGenerate(eat[i]); } while (LengthToSnake(player->Snake(), eat[i]) < 0.3);
+				do { EatGenerate(eat[i]); } while (LengthToSnake(player->Snake(), eat[i]) < 0.1);
 			}
 
-		int i = 0;
-		for (auto x = player->Snake()->begin(); x != player->Snake()->end(); ++x, ++i)
-			if (i < 31) continue;
-			else if (Length(player->Snake()->HeadPosition(), *x) < 0.07 && !player->Snake()->isGostMode()) {
+			if (LengthToSnake(player->Snake()) < 0.07 && !player->Snake()->isGostMode()) {
 				IGame::DeleteTail(player->Snake(), 20);
 				IGame::AddGostMide(player->Snake(), 40);
-				break;
 			}
 	}
 	player->DrawFrame();

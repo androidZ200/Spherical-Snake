@@ -90,7 +90,7 @@
       <AdditionalIncludeDirectories>E:\YandexDisk\YandexDisk\Projects\C++ projects\libs\Matrix\Matrix;E:\YandexDisk\YandexDisk\Projects\C++ projects\libs\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-system-d.lib;Matrix.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;Matrix.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>E:\YandexDisk\YandexDisk\Projects\C++ projects\libs\Matrix\x64\Debug;E:\YandexDisk\YandexDisk\Projects\C++ projects\libs\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
@@ -113,7 +113,7 @@
       <AdditionalIncludeDirectories>E:\YandexDisk\YandexDisk\Projects\C++ projects\libs\Matrix\Matrix;E:\YandexDisk\YandexDisk\Projects\C++ projects\libs\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-system-d.lib;Matrix.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;Matrix.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>E:\YandexDisk\YandexDisk\Projects\C++ projects\libs\Matrix\x64\Debug;E:\YandexDisk\YandexDisk\Projects\C++ projects\libs\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
@@ -129,7 +129,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ControlKeys.cpp" />
     <ClCompile Include="GameClassic.cpp" />
+    <ClCompile Include="GameOfflineMultiplayer.cpp" />
     <ClCompile Include="GameZen.cpp" />
     <ClCompile Include="IConstGame.cpp" />
     <ClCompile Include="IGame.cpp" />
@@ -141,7 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ControlKeys.h" />
     <ClInclude Include="GameClassic.h" />
+    <ClInclude Include="GameOfflineMultiplayer.h" />
     <ClInclude Include="GameZen.h" />
     <ClInclude Include="IConstGame.h" />
     <ClInclude Include="IGame.h" />

@@ -31,3 +31,8 @@ class SkinLava : public ISkin {
 public:
 	sf::Color ColorSegment(int index) override;
 };
+
+class SkinRanbow : public ISkin {
+public:
+	sf::Color ColorSegment(int index) override;
+};

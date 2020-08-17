@@ -26,6 +26,7 @@ void SnakeBody::Move()
 
 	if (maxRotate > 0.04)
 		maxRotate -= 0.01;
+	isNewMatrix = true;
 }
 
 void SnakeBody::Rotate(bool isRight)
@@ -35,6 +36,7 @@ void SnakeBody::Rotate(bool isRight)
 
 	if (maxRotate < 0.18)
 		maxRotate += 0.02;
+	isNewMatrix = true;
 }
 
 bool SnakeBody::isGostMode()
@@ -58,9 +60,18 @@ void SnakeBody::DeleteTail(int count)
 		body.pop_front();
 }
 
-Matrix SnakeBody::GetMatrix()
+void SnakeBody::StartPosition(Camera head)
 {
-	return Rot * head.GetMatrix();
+	this->head = head;
+}
+
+const Matrix& SnakeBody::GetMatrix()
+{
+	if (isNewMatrix) {
+		Output = Rot * head.GetMatrix();
+		isNewMatrix = false;
+	}
+	return Output;
 }
 
 Vector SnakeBody::HeadPosition()

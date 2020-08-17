@@ -1,7 +1,6 @@
 #pragma once
 #include "IGame.h"
 #include "IPlayer.h"
-using namespace System::Threading;
 
 class GameZen : public IGame
 {

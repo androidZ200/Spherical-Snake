@@ -3,9 +3,11 @@ using namespace System::Threading;
 #include <SFML/Graphics.hpp>
 #include "GameClassic.h"
 #include "GameZen.h"
+#include "GameOfflineMultiplayer.h"
 #include <string>
 #include "Player.h"
 #include <time.h>
+#include <iostream>
 
 namespace Snake {
 
@@ -46,6 +48,9 @@ namespace Snake {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Button^ buttonStartDzen;
 	private: System::Windows::Forms::Button^ buttonToPlayers;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::CheckBox^ checkBox1;
+	private: System::Windows::Forms::CheckBox^ checkBox2;
 	protected:
 
 
@@ -72,6 +77,9 @@ namespace Snake {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->buttonStartDzen = (gcnew System::Windows::Forms::Button());
 			this->buttonToPlayers = (gcnew System::Windows::Forms::Button());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
 			this->SuspendLayout();
 			// 
 			// buttonStartClassic
@@ -175,6 +183,39 @@ namespace Snake {
 			this->buttonToPlayers->TabIndex = 6;
 			this->buttonToPlayers->Text = L"На одном компьютере";
 			this->buttonToPlayers->UseVisualStyleBackColor = false;
+			this->buttonToPlayers->Click += gcnew System::EventHandler(this, &StartForm::buttonToPlayers_Click);
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->ForeColor = System::Drawing::Color::White;
+			this->label3->Location = System::Drawing::Point(31, 220);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(69, 13);
+			this->label3->TabIndex = 7;
+			this->label3->Text = L"Параметры:";
+			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->ForeColor = System::Drawing::Color::White;
+			this->checkBox1->Location = System::Drawing::Point(34, 239);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(137, 17);
+			this->checkBox1->TabIndex = 8;
+			this->checkBox1->Text = L"Упрощенная графика";
+			this->checkBox1->UseVisualStyleBackColor = true;
+			// 
+			// checkBox2
+			// 
+			this->checkBox2->AutoSize = true;
+			this->checkBox2->ForeColor = System::Drawing::Color::White;
+			this->checkBox2->Location = System::Drawing::Point(33, 262);
+			this->checkBox2->Name = L"checkBox2";
+			this->checkBox2->Size = System::Drawing::Size(168, 17);
+			this->checkBox2->TabIndex = 9;
+			this->checkBox2->Text = L"Отображение в виде сферы";
+			this->checkBox2->UseVisualStyleBackColor = true;
 			// 
 			// StartForm
 			// 
@@ -182,7 +223,10 @@ namespace Snake {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
-			this->ClientSize = System::Drawing::Size(363, 212);
+			this->ClientSize = System::Drawing::Size(363, 289);
+			this->Controls->Add(this->checkBox2);
+			this->Controls->Add(this->checkBox1);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->buttonToPlayers);
 			this->Controls->Add(this->buttonStartDzen);
 			this->Controls->Add(this->label2);
@@ -199,13 +243,26 @@ namespace Snake {
 #pragma endregion
 
 	private: System::Void buttonStartClassic_Click(System::Object^ sender, System::EventArgs^ e) {
-		IGame* game = new GameClassic(new Player(new SnakeBody(SkinGenerate::Generate())));
+		IGame* game = new GameClassic(new Player(new SnakeBody(SkinGenerate::Generate()), checkBox1->Checked,
+			checkBox2->Checked));
 		LoopGame(game);
+		MessageBox::Show("Length: " + game->GetSnake(0)->size().ToString());
 		delete game;
 	}
 	private: System::Void buttonStartDzen_Click(System::Object^ sender, System::EventArgs^ e) {
-		IGame* game = new GameZen(new Player(new SnakeBody(SkinGenerate::Generate())));
+		IGame* game = new GameZen(new Player(new SnakeBody(SkinGenerate::Generate()), checkBox1->Checked,
+			checkBox2->Checked));
 		LoopGame(game);
+		MessageBox::Show("Length: " + game->GetSnake(0)->size().ToString());
+		delete game;
+	}
+	private: System::Void buttonToPlayers_Click(System::Object^ sender, System::EventArgs^ e) {
+		GameOfflineMultiplayer* game = new GameOfflineMultiplayer(
+			new Player(new SnakeBody(new SkinBlueWave()), checkBox1->Checked, checkBox2->Checked),
+			new Player(new SnakeBody(new SkinLava()), checkBox1->Checked, checkBox2->Checked));
+		LoopGame(game);
+		if(game->isWinPlayerOne()) MessageBox::Show("Синий игрок победил");
+		else MessageBox::Show("Красный игрок победил");
 		delete game;
 	}
 	private: void LoopGame(IGame* game) {
@@ -216,9 +273,9 @@ namespace Snake {
 			game->Tick();
 			int t = time.getElapsedTime().asMilliseconds();
 			Thread::Sleep(Math::Max(40 - t, 0));
+			std::cout << "1";
 		}
 		this->Visible = true;
-		MessageBox::Show("Length: " + game->GetSnake(0)->size().ToString());
 	}
 	};
 }

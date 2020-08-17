@@ -26,7 +26,7 @@ Camera::Camera(const Camera& other)
 
 Camera& Camera::operator=(const Camera& other)
 {
-	*this = Camera(other);
+	A = other.A;
 	return *this;
 }
 

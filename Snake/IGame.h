@@ -13,9 +13,11 @@ protected:
 	void AddSegments(SnakeBody* snake, int count);
 	void AddGostMide(SnakeBody* snake, int count);
 	void DeleteTail(SnakeBody* snake, int count);
+	void SetStart(SnakeBody* snake, Camera start);
 	double Length(const Vector& a, const Vector& b);
 	void EatGenerate(Vector& eat);
 	double LengthToSnake(SnakeBody* snake, const Vector& point);
+	double LengthToSnake(SnakeBody* snake);
 	void GetMove(IPlayer* player);
 };
 

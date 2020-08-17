@@ -26,6 +26,11 @@ void IGame::DeleteTail(SnakeBody* snake, int count)
 	snake->DeleteTail(count);
 }
 
+void IGame::SetStart(SnakeBody* snake, Camera start)
+{
+	snake->StartPosition(start);
+}
+
 double IGame::Length(const Vector& a, const Vector& b)
 {
 	return acos(a.scal(b));
@@ -56,10 +61,25 @@ void IGame::EatGenerate(Vector& eat)
 double IGame::LengthToSnake(SnakeBody* snake, const Vector& point)
 {
 	double min = 1000;
-	for (auto x = snake->begin(); x != snake->end(); ++x) {
-		double l = Length(*x, point);
-		if (l < min) min = l;
-	}
+	int i = 0;
+	for (auto x = snake->begin(); x != snake->end(); ++x, ++i)
+		if (i % 4 == 0) {
+			double l = Length(*x, point);
+			if (l < min) min = l;
+		}
+	return min;
+}
+
+double IGame::LengthToSnake(SnakeBody* snake)
+{
+	Vector t = snake->HeadPosition();
+	double min = 1000;
+	int i = 0;
+	for (auto x = snake->begin(); x != snake->end(); ++x, ++i)
+		if (i % 4 == 0 && i > 30) {
+			double l = Length(*x, t);
+			if (l < min) min = l;
+		}
 	return min;
 }
 

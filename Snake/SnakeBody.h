@@ -8,11 +8,13 @@ class SnakeBody
 	friend class IGame;
 	Camera head;
 	Matrix Rot;
+	Matrix Output;
 	ISkin* skin;
 	std::list<Vector> body;
 	int addSegments = 0;
 	float maxRotate = 0.04;
 	int gostMode = 0;
+	bool isNewMatrix = true;
 
 public:
 
@@ -21,7 +23,7 @@ public:
 	~SnakeBody();
 
 	bool isGostMode();
-	Matrix GetMatrix();
+	const Matrix& GetMatrix();
 	Vector HeadPosition();
 	int size();
 	sf::Color GetColor(int index);
@@ -34,5 +36,6 @@ private:
 	void AddSegments(int count);
 	void AddGostMode(int count);
 	void DeleteTail(int count);
+	void StartPosition(Camera head);
 };
 
