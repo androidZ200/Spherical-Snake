@@ -6,10 +6,20 @@ sf::Color SkinLight::ColorSegment(int index)
     else return sf::Color::Color(180, 180, 180);
 }
 
+int SkinLight::IndexSkin()
+{
+    return 0;
+}
+
 sf::Color SkinGreenWave::ColorSegment(int index)
 {
     int s = 30 * std::sin(index / 3.0);
     return sf::Color::Color(60 + s, 170 + s, 60 + s);
+}
+
+int SkinGreenWave::IndexSkin()
+{
+    return 1;
 }
 
 sf::Color SkinBlueWave::ColorSegment(int index)
@@ -18,10 +28,20 @@ sf::Color SkinBlueWave::ColorSegment(int index)
     return sf::Color::Color(125 + s, 155 + s, 235);
 }
 
+int SkinBlueWave::IndexSkin()
+{
+    return 2;
+}
+
 ISkin* SkinGenerate::Generate()
 {
     int i = rand() % 5;
-    switch (i)
+    return toIndex(i);
+}
+
+ISkin* SkinGenerate::toIndex(int indexSkin)
+{
+    switch (indexSkin)
     {
     case 0: return new SkinLight();
     case 1: return new SkinGreenWave();
@@ -36,6 +56,11 @@ sf::Color SkinLava::ColorSegment(int index)
 {
     double s = std::cos(index / 3.0);
     return sf::Color::Color(235 + s*20, 121 + s*111, 35 + s*35);
+}
+
+int SkinLava::IndexSkin()
+{
+    return 3;
 }
 
 sf::Color SkinRanbow::ColorSegment(int index)
@@ -53,4 +78,9 @@ sf::Color SkinRanbow::ColorSegment(int index)
     case 4: return sf::Color::Color(255 * X, 0, 255);
     case 5: return sf::Color::Color(255, 0, 255 * X);
     }
+}
+
+int SkinRanbow::IndexSkin()
+{
+    return 4;
 }

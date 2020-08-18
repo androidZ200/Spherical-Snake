@@ -1,16 +1,18 @@
 #pragma once
 #include "IGame.h"
-#include "IPlayer.h"
+#include "Player.h"
 
 class GameZen : public IGame
 {
-	IPlayer* player;
+	Player* player;
 	Vector* eat;
 	int eatCount = 5;
 
 public:
-	GameZen(IPlayer* player);
+	GameZen(Player* player);
+	GameZen(const GameZen& other);
 	~GameZen();
+	GameZen& operator = (const GameZen& other);
 
 	int CountSnake() override;
 	int CountEat() override;

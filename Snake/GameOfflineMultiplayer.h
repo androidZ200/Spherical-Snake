@@ -12,7 +12,9 @@ class GameOfflineMultiplayer : public IGame
 
 public:
 	GameOfflineMultiplayer(Player* player1, Player* player2);
+	GameOfflineMultiplayer(const GameOfflineMultiplayer& other);
 	~GameOfflineMultiplayer();
+	GameOfflineMultiplayer& operator = (const GameOfflineMultiplayer& other);
 
 	int CountSnake() override;
 	int CountEat() override;

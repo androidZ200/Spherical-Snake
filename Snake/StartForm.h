@@ -4,6 +4,10 @@ using namespace System::Threading;
 #include "GameClassic.h"
 #include "GameZen.h"
 #include "GameOfflineMultiplayer.h"
+#include "KeysController.h"
+#include "MouseController.h"
+#include "HyperDrawer.h"
+#include "SphericalDrawer.h"
 #include <string>
 #include "Player.h"
 #include <time.h>
@@ -51,6 +55,7 @@ namespace Snake {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::CheckBox^ checkBox1;
 	private: System::Windows::Forms::CheckBox^ checkBox2;
+	private: System::Windows::Forms::CheckBox^ checkBox3;
 	protected:
 
 
@@ -80,6 +85,7 @@ namespace Snake {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
 			this->SuspendLayout();
 			// 
 			// buttonStartClassic
@@ -105,6 +111,7 @@ namespace Snake {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->buttonCreateServer->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(40)),
 				static_cast<System::Int32>(static_cast<System::Byte>(40)), static_cast<System::Int32>(static_cast<System::Byte>(40)));
+			this->buttonCreateServer->Enabled = false;
 			this->buttonCreateServer->FlatAppearance->BorderSize = 0;
 			this->buttonCreateServer->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonCreateServer->ForeColor = System::Drawing::Color::White;
@@ -121,6 +128,7 @@ namespace Snake {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->buttonConnect->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(40)), static_cast<System::Int32>(static_cast<System::Byte>(40)),
 				static_cast<System::Int32>(static_cast<System::Byte>(40)));
+			this->buttonConnect->Enabled = false;
 			this->buttonConnect->FlatAppearance->BorderSize = 0;
 			this->buttonConnect->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonConnect->ForeColor = System::Drawing::Color::White;
@@ -217,13 +225,27 @@ namespace Snake {
 			this->checkBox2->Text = L"Отображение в виде сферы";
 			this->checkBox2->UseVisualStyleBackColor = true;
 			// 
+			// checkBox3
+			// 
+			this->checkBox3->AutoSize = true;
+			this->checkBox3->Checked = true;
+			this->checkBox3->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->checkBox3->ForeColor = System::Drawing::Color::White;
+			this->checkBox3->Location = System::Drawing::Point(33, 285);
+			this->checkBox3->Name = L"checkBox3";
+			this->checkBox3->Size = System::Drawing::Size(133, 17);
+			this->checkBox3->TabIndex = 10;
+			this->checkBox3->Text = L"Управление мышкой";
+			this->checkBox3->UseVisualStyleBackColor = true;
+			// 
 			// StartForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
-			this->ClientSize = System::Drawing::Size(363, 289);
+			this->ClientSize = System::Drawing::Size(363, 311);
+			this->Controls->Add(this->checkBox3);
 			this->Controls->Add(this->checkBox2);
 			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->label3);
@@ -243,25 +265,25 @@ namespace Snake {
 #pragma endregion
 
 	private: System::Void buttonStartClassic_Click(System::Object^ sender, System::EventArgs^ e) {
-		IGame* game = new GameClassic(new Player(new SnakeBody(SkinGenerate::Generate()), checkBox1->Checked,
-			checkBox2->Checked));
+		IGame* game = new GameClassic(new Player(new SnakeBody(SkinGenerate::Generate()), GetKeys(), GetDrawer(700)));
 		LoopGame(game);
 		MessageBox::Show("Length: " + game->GetSnake(0)->size().ToString());
 		delete game;
 	}
 	private: System::Void buttonStartDzen_Click(System::Object^ sender, System::EventArgs^ e) {
-		IGame* game = new GameZen(new Player(new SnakeBody(SkinGenerate::Generate()), checkBox1->Checked,
-			checkBox2->Checked));
+		IGame* game = new GameZen(new Player(new SnakeBody(SkinGenerate::Generate()), GetKeys(), GetDrawer(700)));
 		LoopGame(game);
 		MessageBox::Show("Length: " + game->GetSnake(0)->size().ToString());
 		delete game;
 	}
 	private: System::Void buttonToPlayers_Click(System::Object^ sender, System::EventArgs^ e) {
+		KeysController* con1 = new KeysController(ControlKeys(sf::Keyboard::Right, sf::Keyboard::Left));
+		KeysController* con2 = new KeysController(ControlKeys(sf::Keyboard::D, sf::Keyboard::A));
 		GameOfflineMultiplayer* game = new GameOfflineMultiplayer(
-			new Player(new SnakeBody(new SkinBlueWave()), checkBox1->Checked, checkBox2->Checked),
-			new Player(new SnakeBody(new SkinLava()), checkBox1->Checked, checkBox2->Checked));
+			new Player(new SnakeBody(new SkinBlueWave()), con1, GetDrawer(600)),
+			new Player(new SnakeBody(new SkinLava()), con2, GetDrawer(600)));
 		LoopGame(game);
-		if(game->isWinPlayerOne()) MessageBox::Show("Синий игрок победил");
+		if (game->isWinPlayerOne()) MessageBox::Show("Синий игрок победил");
 		else MessageBox::Show("Красный игрок победил");
 		delete game;
 	}
@@ -276,6 +298,18 @@ namespace Snake {
 			std::cout << "1";
 		}
 		this->Visible = true;
+	}
+	private: IController* GetKeys() {
+		if(checkBox3->Checked) return new MouseController();
+		KeysController* con = new KeysController(ControlKeys(sf::Keyboard::Right, sf::Keyboard::Left));
+		con->AddKeys(ControlKeys(sf::Keyboard::D, sf::Keyboard::A));
+		return con;
+	}
+	private: SFMLDrawer* GetDrawer(int size) {
+		SFMLDrawer* drw;
+		if (!checkBox2->Checked) drw = new HyperDrawer(size, checkBox1->Checked);
+		else drw = new SphericalDrawer(size, checkBox1->Checked);
+		return drw;
 	}
 	};
 }

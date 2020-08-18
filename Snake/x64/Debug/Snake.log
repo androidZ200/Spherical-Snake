@@ -1,25 +1,9 @@
 ﻿  Скопировано файлов: 0.
-  Player.cpp
+  KeysController.cpp
 E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Camera.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\SnakeBody.h(15,18): warning C4305: инициализация: усечение из "double" в "float"
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Player.cpp(119,28): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Player.cpp(144,18): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Player.cpp(145,86): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Player.cpp(145,50): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Player.cpp(167,34): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Player.cpp(167,31): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Player.cpp(168,17): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Player.cpp(169,44): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Player.cpp(171,18): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Player.cpp(172,76): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Player.cpp(172,44): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  StartForm.cpp
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\Camera.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\Snake\StartForm.h(34,14): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Создание кода...
   Camera.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   Snake.vcxproj -> E:\YandexDisk\YandexDisk\Projects\C++ projects\Snake\x64\Debug\Snake.exe

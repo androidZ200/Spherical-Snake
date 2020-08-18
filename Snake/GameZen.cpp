@@ -1,6 +1,6 @@
 #include "GameZen.h"
 
-GameZen::GameZen(IPlayer* player)
+GameZen::GameZen(Player* player)
 {
 	this->player = player;
 	eat = new Vector[eatCount];
@@ -11,10 +11,31 @@ GameZen::GameZen(IPlayer* player)
 	player->SetGameField(this);
 }
 
+GameZen::GameZen(const GameZen& other)
+{
+	player = new Player(*other.player);
+	eat = new Vector[eatCount = other.eatCount];
+	for (int i = 0; i < eatCount; i++)
+		eat[i] = other.eat[i];
+	player->SetGameField(this);
+}
+
 GameZen::~GameZen()
 {
 	delete player;
 	delete[] eat;
+}
+
+GameZen& GameZen::operator=(const GameZen& other)
+{
+	delete player;
+	delete[] eat;
+	player = new Player(*other.player);
+	eat = new Vector[eatCount = other.eatCount];
+	for (int i = 0; i < eatCount; i++)
+		eat[i] = other.eat[i];
+	player->SetGameField(this);
+	return *this;
 }
 
 int GameZen::CountSnake()

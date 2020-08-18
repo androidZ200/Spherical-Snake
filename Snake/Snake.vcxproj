@@ -133,11 +133,16 @@
     <ClCompile Include="GameClassic.cpp" />
     <ClCompile Include="GameOfflineMultiplayer.cpp" />
     <ClCompile Include="GameZen.cpp" />
+    <ClCompile Include="HyperDrawer.cpp" />
     <ClCompile Include="IConstGame.cpp" />
     <ClCompile Include="IGame.cpp" />
+    <ClCompile Include="KeysController.cpp" />
+    <ClCompile Include="MouseController.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SFMLDrawer.cpp" />
     <ClCompile Include="Skins.cpp" />
     <ClCompile Include="SnakeBody.cpp" />
+    <ClCompile Include="SphericalDrawer.cpp" />
     <ClCompile Include="StartForm.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
@@ -147,12 +152,19 @@
     <ClInclude Include="GameClassic.h" />
     <ClInclude Include="GameOfflineMultiplayer.h" />
     <ClInclude Include="GameZen.h" />
+    <ClInclude Include="HyperDrawer.h" />
     <ClInclude Include="IConstGame.h" />
+    <ClInclude Include="IController.h" />
+    <ClInclude Include="IDrawer.h" />
     <ClInclude Include="IGame.h" />
     <ClInclude Include="IPlayer.h" />
+    <ClInclude Include="KeysController.h" />
+    <ClInclude Include="MouseController.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SFMLDrawer.h" />
     <ClInclude Include="Skins.h" />
     <ClInclude Include="SnakeBody.h" />
+    <ClInclude Include="SphericalDrawer.h" />
     <ClInclude Include="StartForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

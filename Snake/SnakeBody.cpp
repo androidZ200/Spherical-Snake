@@ -4,6 +4,17 @@ SnakeBody::SnakeBody() : SnakeBody(new SkinLight())
 {
 }
 
+SnakeBody::SnakeBody(const SnakeBody& other)
+{
+	head = other.head;
+	Rot = other.Rot;
+	isNewMatrix = true;
+	body = other.body;
+	addSegments = other.addSegments;
+	gostMode = other.gostMode;
+	skin = SkinGenerate::toIndex(other.skin->IndexSkin());
+}
+
 SnakeBody::SnakeBody(ISkin* skin)
 {
 	this->skin = skin;
@@ -16,6 +27,20 @@ SnakeBody::~SnakeBody()
 	delete skin;
 }
 
+SnakeBody& SnakeBody::operator=(const SnakeBody& other)
+{
+	delete skin;
+	head = other.head;
+	Rot = other.Rot;
+	isNewMatrix = true;
+	body = other.body;
+	addSegments = other.addSegments;
+	gostMode = other.gostMode;
+	skin = SkinGenerate::toIndex(other.skin->IndexSkin());
+
+	return *this;
+}
+
 void SnakeBody::Move()
 {
 	if (gostMode > 0) gostMode--;
@@ -24,18 +49,17 @@ void SnakeBody::Move()
 	head.GoFront(0.03);
 	body.push_back(head.GetPosition());
 
-	if (maxRotate > 0.04)
-		maxRotate -= 0.01;
 	isNewMatrix = true;
 }
 
-void SnakeBody::Rotate(bool isRight)
+void SnakeBody::Rotate(double angle)
 {
-	if (isRight) { head.Rotate(-maxRotate);  Rot = Matrix::Rotate(3, maxRotate, 1, 0) * Rot; }
-	else { head.Rotate(maxRotate); Rot = Matrix::Rotate(3, maxRotate, 0, 1) * Rot;	}
+	if (angle < -1) angle = -1;
+	else if (angle > 1) angle = 1;
+	angle /= 6;
+	head.Rotate(angle);  
+	Rot = Matrix::Rotate(3, angle, 0, 1) * Rot;
 
-	if (maxRotate < 0.18)
-		maxRotate += 0.02;
 	isNewMatrix = true;
 }
 
@@ -77,6 +101,14 @@ const Matrix& SnakeBody::GetMatrix()
 Vector SnakeBody::HeadPosition()
 {
 	return head.GetPosition();
+}
+
+Vector SnakeBody::Front()
+{
+	Vector t(2);
+	t[0] = Rot(1, 0);
+	t[1] = Rot(1, 1);
+	return t;
 }
 
 int SnakeBody::size()

@@ -9,7 +9,7 @@ public:
 	virtual void Tick() = 0;
 protected:
 	void Move(SnakeBody* snake);
-	void Rotate(SnakeBody* snake, bool isRight);
+	void Rotate(SnakeBody* snake, double angle);
 	void AddSegments(SnakeBody* snake, int count);
 	void AddGostMide(SnakeBody* snake, int count);
 	void DeleteTail(SnakeBody* snake, int count);

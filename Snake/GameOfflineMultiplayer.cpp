@@ -2,11 +2,9 @@
 
 GameOfflineMultiplayer::GameOfflineMultiplayer(Player* player1, Player* player2)
 {
-	player = new Player * [2];
+	player = new Player * [playerCount];
 	player[0] = player1;
 	player[1] = player2;
-	player[0]->SetKeys(ControlKeys(sf::Keyboard::Key::Right, sf::Keyboard::Key::Left));
-	player[1]->SetKeys(ControlKeys(sf::Keyboard::Key::X, sf::Keyboard::Key::Z));
 	eat = new Vector[eatCount];
 	for (int i = 0; i < eatCount; i++) {
 		eat[i] = Vector(3);
@@ -19,12 +17,43 @@ GameOfflineMultiplayer::GameOfflineMultiplayer(Player* player1, Player* player2)
 	SetStart(player[1]->Snake(), cam);
 }
 
+GameOfflineMultiplayer::GameOfflineMultiplayer(const GameOfflineMultiplayer& other)
+{
+	player = new Player*[playerCount];
+	for(int i = 0; i < playerCount; i++)
+		player[i] = new Player(*other.player[i]);
+	eat = new Vector[eatCount];
+	for (int i = 0; i < eatCount; i++)
+		eat[i] = other.eat[i];
+	player[0]->SetGameField(this);
+	player[1]->SetGameField(this);
+}
+
 GameOfflineMultiplayer::~GameOfflineMultiplayer()
 {
 	delete player[0];
 	delete player[1];
 	delete[] player;
 	delete[] eat;
+}
+
+GameOfflineMultiplayer& GameOfflineMultiplayer::operator=(const GameOfflineMultiplayer& other)
+{
+	delete player[0];
+	delete player[1];
+	delete[] player;
+	delete[] eat;
+
+	player = new Player * [playerCount];
+	for (int i = 0; i < playerCount; i++)
+		player[i] = new Player(*other.player[i]);
+	eat = new Vector[eatCount];
+	for (int i = 0; i < eatCount; i++)
+		eat[i] = other.eat[i];
+	player[0]->SetGameField(this);
+	player[1]->SetGameField(this);
+
+	return *this;
 }
 
 int GameOfflineMultiplayer::CountSnake()

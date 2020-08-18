@@ -6,9 +6,9 @@ void IGame::Move(SnakeBody* snake)
 	snake->Move();
 }
 
-void IGame::Rotate(SnakeBody* snake, bool isRight)
+void IGame::Rotate(SnakeBody* snake, double angle)
 {
-	snake->Rotate(isRight);
+	snake->Rotate(angle);
 }
 
 void IGame::AddSegments(SnakeBody* snake, int count)
@@ -86,9 +86,5 @@ double IGame::LengthToSnake(SnakeBody* snake)
 void IGame::GetMove(IPlayer* player)
 {
 	Move(player->Snake());
-	IPlayer::Move rot = player->GetMove();
-	if (rot == IPlayer::Move::Right)
-		Rotate(player->Snake(), true);
-	else if (rot == IPlayer::Move::Left)
-		Rotate(player->Snake(), false);
+	Rotate(player->Snake(), player->GetMove());
 }

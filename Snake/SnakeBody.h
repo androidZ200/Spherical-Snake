@@ -12,19 +12,21 @@ class SnakeBody
 	ISkin* skin;
 	std::list<Vector> body;
 	int addSegments = 0;
-	float maxRotate = 0.04;
 	int gostMode = 0;
 	bool isNewMatrix = true;
 
 public:
 
 	SnakeBody();
+	SnakeBody(const SnakeBody& other);
 	SnakeBody(ISkin* skin);
 	~SnakeBody();
+	SnakeBody& operator = (const SnakeBody& other);
 
 	bool isGostMode();
 	const Matrix& GetMatrix();
 	Vector HeadPosition();
+	Vector Front();
 	int size();
 	sf::Color GetColor(int index);
 	std::list<Vector>::reverse_iterator begin();
@@ -32,7 +34,7 @@ public:
 
 private:
 	void Move();
-	void Rotate(bool isRight);
+	void Rotate(double angle);
 	void AddSegments(int count);
 	void AddGostMode(int count);
 	void DeleteTail(int count);

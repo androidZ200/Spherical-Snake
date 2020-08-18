@@ -1,6 +1,6 @@
 #include "GameClassic.h"
 
-GameClassic::GameClassic(IPlayer* player)
+GameClassic::GameClassic(Player* player)
 {
 	this->player = player;
 	eat = Vector(3);
@@ -8,9 +8,25 @@ GameClassic::GameClassic(IPlayer* player)
 	player->SetGameField(this);
 }
 
+GameClassic::GameClassic(const GameClassic& other)
+{
+	player = new Player(*other.player);
+	eat = other.eat;
+	player->SetGameField(this);
+}
+
 GameClassic::~GameClassic()
 {
 	delete player;
+}
+
+GameClassic& GameClassic::operator=(const GameClassic& other)
+{
+	delete player;
+	player = new Player(*other.player);
+	eat = other.eat;
+	player->SetGameField(this);
+	return *this;
 }
 
 int GameClassic::CountSnake()
